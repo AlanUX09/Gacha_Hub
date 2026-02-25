@@ -24,7 +24,7 @@ export default function CatalogPage() {
         <div className="flex flex-col w-screen h-screen bg-background text-foreground font-sans overflow-hidden">
 
             {/* 2. Title Header (Fixed) */}
-            <header className="flex items-center gap-4 md:gap-6 w-full p-4 md:p-6 max-w-[1600px] mx-auto shrink-0 border-b border-border/50 bg-background/80 backdrop-blur-md z-30">
+            <header className="flex items-center gap-4 md:gap-6 w-full p-4 md:p-6 px-4 md:px-8 lg:px-12 2xl:px-24 mx-auto shrink-0 border-b border-border/50 bg-background/80 backdrop-blur-md z-30">
                 <div className="bg-card border border-border rounded-2xl size-16 md:size-20 shrink-0 flex items-center justify-center text-primary shadow-sm">
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="18" height="18" x="3" y="3" rx="2" ry="2" /><path d="M3 9h18" /><path d="M9 21V9" /></svg>
                 </div>
@@ -35,7 +35,7 @@ export default function CatalogPage() {
             </header>
 
             {/* 3. Contenedor de Columnas (Flex area) */}
-            <div className="flex-1 flex flex-col md:flex-row gap-0 md:gap-6 w-full max-w-[1600px] mx-auto overflow-hidden">
+            <div className="flex-1 flex flex-col md:flex-row gap-0 md:gap-6 w-full px-4 md:px-8 lg:px-12 2xl:px-24 mx-auto overflow-hidden">
 
                 {/* 4. Columna Izquierda: Sidebar de Filtros (Fixed on Desktop) */}
                 <aside className="hidden md:flex flex-col w-64 shrink-0 h-full border-r border-border/10 bg-card/20 py-6 pr-6 overflow-y-auto no-scrollbar">
@@ -114,8 +114,8 @@ export default function CatalogPage() {
                                         key={tag}
                                         onClick={() => setActiveTag(tag)}
                                         className={`whitespace-nowrap rounded-md px-3 py-1 text-xs font-bold uppercase tracking-wider transition-all border ${activeTag === tag
-                                                ? "bg-foreground text-background border-foreground shadow-md"
-                                                : "bg-secondary text-secondary-foreground border-border hover:bg-accent"
+                                            ? "bg-foreground text-background border-foreground shadow-md"
+                                            : "bg-secondary text-secondary-foreground border-border hover:bg-accent"
                                             }`}
                                     >
                                         {tag}
@@ -126,7 +126,7 @@ export default function CatalogPage() {
                     </div>
 
                     {/* 5B. Grilla de Tarjetas (Game Cards) */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 w-full pb-20">
+                    <div className="grid gap-4 grid-cols-[repeat(auto-fill,minmax(280px,1fr))] w-full pb-20">
                         {MOCK_GAMES.map((game) => (
                             <div key={game.id} className="group bg-card border border-border rounded-lg overflow-hidden flex flex-col hover:border-primary/50 transition-all cursor-pointer shadow-sm hover:shadow-md hover:-translate-y-1 duration-300">
 
