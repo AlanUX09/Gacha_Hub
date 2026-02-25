@@ -1,0 +1,53 @@
+@import "tailwindcss";
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --color-background: #ffffff;
+  --color-foreground: #18181b;
+}
+
+:root {
+  --color-background: #ffffff;
+  --color-foreground: #18181b;
+}
+
+:root.dark {
+  --color-background: #0a0a0e;
+  --color-foreground: #ffffff;
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+}
+
+/* Custom WebKit Scrollbar (Minimal Pill Design) */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: theme('colors.zinc.400');
+  border-radius: 9999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: theme('colors.zinc.600');
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: theme('colors.zinc.500');
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: theme('colors.zinc.400');
+}
