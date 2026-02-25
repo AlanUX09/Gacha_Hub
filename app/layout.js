@@ -1,9 +1,9 @@
-import { Outfit } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import ClientLayout from "@/components/ClientLayout";
 
-const outfit = Outfit({
-  variable: "--font-outfit",
+const inter = Inter({
+  variable: "--font-sans",
   subsets: ["latin"],
 });
 
@@ -14,9 +14,9 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="es" className="scroll-smooth suppressHydrationWarning">
+    <html lang="es" className={`${inter.variable} scroll-smooth suppressHydrationWarning`}>
       <body
-        className={`${outfit.variable} font-sans antialiased h-screen overflow-hidden flex bg-white text-zinc-900 dark:bg-[#0a0a0e] dark:text-gray-100`}
+        className={`${inter.className} antialiased h-screen overflow-hidden flex`}
       >
         <ClientLayout>
           {children}

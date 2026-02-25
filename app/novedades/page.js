@@ -33,17 +33,17 @@ export default function NewsPage() {
     return (
         <div className="space-y-10 animate-in fade-in duration-500 relative pb-10">
             <div className="text-center md:text-left px-2">
-                <h1 className="text-4xl md:text-5xl font-extrabold mb-4 flex items-center justify-center md:justify-start gap-4 tracking-tight drop-shadow-sm">
-                    <span className="w-2.5 h-12 rounded-full bg-gradient-to-b from-purple-500 to-pink-500 shadow-lg shadow-purple-500/20"></span>
+                <h1 className="text-4xl md:text-5xl font-extrabold mb-4 flex items-center justify-center md:justify-start gap-4 tracking-tight text-foreground">
+                    <span className="w-2.5 h-12 rounded-full bg-primary"></span>
                     Últimas Novedades
                 </h1>
-                <p className="text-gray-400 text-lg md:text-xl md:pl-3 text-balance">Mantente al tanto de todos los anuncios, eventos y recompensas.</p>
+                <p className="text-muted-foreground text-lg md:text-xl md:pl-3 text-balance font-medium">Mantente al tanto de todos los anuncios, eventos y recompensas.</p>
             </div>
 
             {/* Filters & Search */}
-            <div className="bg-[#12121a]/95 backdrop-blur-xl p-6 rounded-[2rem] border border-white/10 space-y-6 sticky top-20 z-40 shadow-2xl shadow-black/50 mx-2">
+            <div className="bg-card p-6 rounded-3xl border border-border space-y-6 sticky top-20 z-40 shadow-lg mx-2">
                 <div className="relative">
-                    <svg className="absolute left-5 top-1/2 -translate-y-1/2 text-gray-500 w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg className="absolute left-5 top-1/2 -translate-y-1/2 text-muted-foreground w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                     </svg>
                     <input
@@ -51,7 +51,7 @@ export default function NewsPage() {
                         placeholder="Buscar por título o contenido..."
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
-                        className="w-full bg-[#0a0a0e] border border-white/5 rounded-2xl py-4 pl-14 pr-6 text-gray-100 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-purple-500 transition-all font-medium text-lg shadow-inner"
+                        className="w-full bg-background border border-border rounded-xl py-4 pl-14 pr-6 text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all font-medium text-lg shadow-inner"
                     />
                 </div>
 
@@ -59,8 +59,8 @@ export default function NewsPage() {
                     <button
                         onClick={() => setActiveTag('All')}
                         className={`px-5 py-2.5 rounded-full text-sm font-bold tracking-wide uppercase transition-all duration-300 ${activeTag === 'All'
-                                ? 'bg-purple-600 text-white shadow-lg shadow-purple-500/40 scale-105'
-                                : 'bg-white/5 text-gray-400 hover:bg-white/10 hover:text-gray-200 border border-white/5 hover:border-white/10'
+                            ? 'bg-primary text-primary-foreground shadow-md scale-105'
+                            : 'bg-secondary text-secondary-foreground hover:bg-muted font-medium border border-border'
                             }`}
                     >
                         Todos
@@ -70,8 +70,8 @@ export default function NewsPage() {
                             key={tag}
                             onClick={() => setActiveTag(tag)}
                             className={`px-5 py-2.5 rounded-full text-sm font-bold tracking-wide uppercase transition-all duration-300 ${activeTag === tag
-                                    ? 'bg-purple-600 text-white shadow-lg shadow-purple-500/40 scale-105'
-                                    : 'bg-white/5 text-gray-400 hover:bg-white/10 hover:text-gray-200 border border-white/5 hover:border-white/10'
+                                ? 'bg-primary text-primary-foreground shadow-md scale-105'
+                                : 'bg-secondary text-secondary-foreground hover:bg-muted font-medium border border-border'
                                 }`}
                         >
                             {tag}
@@ -80,25 +80,23 @@ export default function NewsPage() {
                 </div>
             </div>
 
-            {/* Feed */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-4 px-2">
                 {filteredUpdates.length === 0 ? (
-                    <div className="col-span-full py-20 text-center flex flex-col items-center justify-center text-gray-500 bg-[#12121a] rounded-[2rem] border border-white/5 shadow-inner">
-                        <svg className="w-16 h-16 text-gray-600 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                        <p className="text-xl font-medium text-gray-400">No se encontraron novedades.</p>
+                    <div className="col-span-full py-20 text-center flex flex-col items-center justify-center text-muted-foreground bg-card rounded-3xl border border-border shadow-inner">
+                        <svg className="w-16 h-16 text-muted-foreground/50 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                        <p className="text-xl font-medium text-foreground">No se encontraron novedades.</p>
                         <p className="text-sm mt-2">Prueba ajustando los filtros o la búsqueda.</p>
                     </div>
                 ) : (
                     filteredUpdates.map(update => {
                         const game = games.find(g => g.id === update.game_id);
                         return (
-                            <div key={update.id} className="group flex flex-col bg-[#12121a] rounded-[2rem] border border-white/5 overflow-hidden hover:border-purple-500/40 hover:shadow-2xl hover:shadow-purple-500/10 transition-all duration-500 hover:-translate-y-1">
+                            <div key={update.id} className="group flex flex-col bg-card text-card-foreground rounded-3xl border border-border overflow-hidden hover:border-primary/40 hover:shadow-xl transition-all duration-500">
                                 <div className="p-1.5 pb-0">
-                                    <div className="relative aspect-video rounded-[1.5rem] overflow-hidden mb-5 border border-white/5">
-                                        <div className="absolute inset-0 bg-gray-800 animate-pulse" />
-                                        <img src={update.thumbnail_url} alt={update.title} className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-in-out" />
-                                        <div className="absolute inset-0 bg-gradient-to-t from-[#12121a]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                                        <Link href={`/juegos/${game?.slug}`} className="absolute top-3 left-3 flex items-center gap-2 bg-black/80 backdrop-blur-md px-3 py-1.5 rounded-xl text-xs font-bold text-white border border-white/10 shadow-lg hover:bg-black transition-colors hover:scale-105 active:scale-95 duration-200">
+                                    <div className="relative aspect-video rounded-2xl overflow-hidden mb-5 border border-border">
+                                        <div className="absolute inset-0 bg-muted animate-pulse" />
+                                        <img src={update.thumbnail_url} alt={update.title} className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                                        <Link href={`/juegos/${game?.slug}`} className="absolute top-3 left-3 flex items-center gap-2 bg-secondary/90 backdrop-blur-sm px-3 py-1.5 rounded-xl text-xs font-bold text-secondary-foreground border border-border shadow-md hover:bg-secondary transition-all">
                                             <img src={game?.icon_url} alt="" className="w-5 h-5 rounded-md object-cover" />
                                             {game?.name}
                                         </Link>
@@ -107,24 +105,24 @@ export default function NewsPage() {
 
                                 <div className="px-7 pb-7 flex flex-col flex-1">
                                     <div className="flex items-center gap-4 mb-4">
-                                        <span className="text-xs font-medium text-gray-400 flex items-center gap-1.5">
+                                        <span className="text-xs font-medium text-muted-foreground flex items-center gap-1.5">
                                             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
                                             {new Date(update.published_at).toLocaleDateString('es-ES', { day: 'numeric', month: 'short', year: 'numeric' })}
                                         </span>
                                         <div className="flex gap-2 ml-auto overflow-hidden">
                                             {update.tags.map(tag => (
-                                                <span key={tag} className="px-2.5 py-1 bg-purple-500/10 text-purple-300 border border-purple-500/20 rounded-lg text-[9px] font-bold uppercase tracking-wider whitespace-nowrap shadow-sm">
+                                                <span key={tag} className="px-2.5 py-1 bg-accent text-accent-foreground border border-border rounded-lg text-[9px] font-bold uppercase tracking-wider whitespace-nowrap">
                                                     {tag}
                                                 </span>
                                             ))}
                                         </div>
                                     </div>
 
-                                    <h2 className="text-xl font-bold text-gray-100 mb-3 group-hover:text-purple-400 transition-colors leading-snug">
+                                    <h2 className="text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors leading-snug">
                                         {update.title}
                                     </h2>
 
-                                    <p className="text-gray-400 leading-relaxed text-sm mt-auto">
+                                    <p className="text-muted-foreground leading-relaxed text-sm mt-auto">
                                         {update.summary}
                                     </p>
                                 </div>
